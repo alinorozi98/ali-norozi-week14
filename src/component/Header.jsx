@@ -213,6 +213,28 @@ const confirmEditHandler = () => {
     cancelHandler()
 }
 
+const removeHandler = (id) => {
+    setSingleDeleteId(id)
+    setShowSingleDeleteModal(true)
+}
+
+const cancelSingleDeleteHandler = () => {
+    setShowSingleDeleteModal(false)
+    setSingleDeleteId(null)
+}
+
+const confirmSingleDeleteHandler = () => {
+    const newContacts = contacts.filter((contact) => contact.id !== singleDeleteId)
+
+    setContacts(newContacts)
+    setShowSingleDeleteModal(false)
+    setSingleDeleteId(null)
+    setDeleteMessage("1 مخاطب حذف شد")
+}
+
+
+
+
 
 
 
