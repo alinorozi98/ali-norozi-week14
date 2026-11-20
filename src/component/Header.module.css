@@ -17,3 +17,17 @@
     border-radius: 5px;
     border: 1px solid black;
 }
+
+.headers span {
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.headers span:hover {
+    transform: scale(1.1);
+}
+
+.headers span {
+    user-select: none;
+}
