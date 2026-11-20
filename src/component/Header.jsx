@@ -1,5 +1,4 @@
 
-
 import { useEffect, useState } from "react"
 import AddContact from "./AddContact"
 import ContactList from "./ContactList"
@@ -42,6 +41,7 @@ const isValidPhone = (phone) => {
 
     return englishPhone.length === 11 && englishPhone.startsWith("09") && onlyNumbers
 }
+
 
 
 function Header() {
@@ -138,8 +138,6 @@ const closeDeleteModeHandler = () => {
     setRemove(false)
 }
 
-
-
 const showHandler = (event) => {
     const { name, value } = event.target
 
@@ -215,6 +213,7 @@ const cancelAddModalHandler = () => {
     setShowAddModal(false)
 }
 
+
 const confirmEditHandler = () => {
     const updatedContact = {
         ...contact,
@@ -225,9 +224,12 @@ const confirmEditHandler = () => {
         item.id === editId ? updatedContact : item
     ))
 
+    setDeleteMessage("مخاطب ویرایش شد")
+
     setShowEditModal(false)
     cancelHandler()
 }
+
 
 const removeHandler = (id) => {
     setSingleDeleteId(id)
@@ -247,8 +249,6 @@ const confirmSingleDeleteHandler = () => {
     setSingleDeleteId(null)
     setDeleteMessage("1 مخاطب حذف شد")
 }
-
-
 
 
 if (add) {

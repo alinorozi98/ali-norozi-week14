@@ -1,4 +1,3 @@
-
 .headers {
     display: flex;
     align-items: center;
@@ -95,3 +94,31 @@
     font-weight: 500;
 }
 
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    padding: 15px 25px;
+    color: white;
+    background-color: #299bd1;
+    border-radius: 5px;
+    animation: hideMessage 4s forwards;
+}
+
+@keyframes hideMessage {
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.editButton {
+    background-color: #299bd1;
+    color: white;
+    font-weight: 500;
+}

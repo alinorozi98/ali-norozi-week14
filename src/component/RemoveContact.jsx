@@ -45,8 +45,6 @@ const confirmBulkRemoveHandler = () => {
     setDeleteMessage(`${deletedCount} مخاطب حذف شد`)
     onClose()
 }
-
-
    
 return (
     <>
