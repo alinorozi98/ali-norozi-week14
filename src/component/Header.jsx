@@ -84,12 +84,104 @@ const serchHandler = (event) => {
 
 const serchValue = search.toLowerCase().trim()
 
+
 const searchContacts = contacts.filter((item) => {
     const itemName = (item.name ?? "").toLowerCase()
     const itemEmail = (item.email ?? "").toLowerCase()
 
     return itemName.includes(serchValue) || itemEmail.includes(serchValue)
 })
+
+const addHandler = () => {
+    setRemove(false)
+    setContact(emptyContact)
+    setEditId(null)
+    setAlertName("")
+    setAlertEmail("")
+    setAlertPhone("")
+    setAdd(add => !add)
+}
+
+const editHandler = (selectedContact) => {
+    setRemove(false)
+    setContact({ ...selectedContact })
+    setEditId(selectedContact.id)
+    setAlertName("")
+    setAlertEmail("")
+    setAlertPhone("")
+    setAdd(true)
+}
+
+const cancelHandler = () => {
+    setAdd(false)
+    setShowEditModal(false)
+    setShowAddModal(false)
+    setContact(emptyContact)
+    setEditId(null)
+    setAlertName("")
+    setAlertEmail("")
+    setAlertPhone("")
+}
+
+const showHandler = (event) => {
+    const { name, value } = event.target
+
+    setContact(contact => ({
+        ...contact,
+        [name]: value,
+    }))
+
+    if (name === "name") {
+        if (value.trim() === "") {
+            setAlertName("لطفا نام مخاطب را وارد کنید.")
+        } else if (value.trim().length < 7) {
+            setAlertName("لطفا حداقل 7 کاراکتر وارد کنید.")
+        } else {
+            setAlertName("")
+        }
+    }
+
+    if (name === "email") {
+        if (value.trim() === "") {
+            setAlertEmail("لطفا ایمیل مخاطب را وارد کنید.")
+        } else if (!isValidEmail(value)) {
+            setAlertEmail("یک ایمیل معتبر وارد کنید.")
+        } else {
+            setAlertEmail("")
+        }
+    }
+
+    if (name === "phone") {
+        if (!isValidPhone(value)) {
+            setAlertPhone("شماره معتبر وارد کنید.")
+        } else {
+            setAlertPhone("")
+        }
+    }
+}
+
+const phoneNumber = convertToEnglish(contact.phone)
+
+const nameIsValid = contact.name.trim().length >= 7
+const emailIsValid = isValidEmail(contact.email)
+const workIsValid = contact.work.trim() !== ""
+const phoneIsValid = isValidPhone(contact.phone)
+
+const isFormValid = nameIsValid && emailIsValid && workIsValid && phoneIsValid
+
+const addedHandler = () => {
+    if (!isFormValid) {
+        return
+    }
+
+    if (editId) {
+        setShowEditModal(true)
+    } else {
+        setShowAddModal(true)
+    }
+}
+
+
 
     return (
         <>
