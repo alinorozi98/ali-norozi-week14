@@ -1,0 +1,112 @@
+
+.contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact div {
+    height: 80px;
+    width: 95%;
+    padding: 20px 25px;
+}
+
+.contact div p {
+    width: 30%;
+    margin: 5px 65px;
+    font-size: 0.9rem;
+}
+
+.contact div input {
+    width: 70%;
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    outline: none;
+}
+
+.contact div label {
+    font-size: 1.2rem;
+    padding: 0px 60px;
+    font-weight: bold;
+}
+
+.contact button {
+    width: 100px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid rgb(30, 107, 30);
+    background-color: rgba(0, 100, 0, 0.3);
+    transition: all 0.5s ease-in-out;
+    color: rgb(30, 107, 30);
+}
+
+.contact button:hover {
+    transform: scale(1.1);
+}
+
+.contact span {
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact span:hover {
+    transform: scale(1.1);
+}
+
+.email input {
+    margin-right: 80px;
+}
+
+.work input {
+    margin-right: 80px;
+}
+
+.phone input {
+    margin-right: 40px;
+}
+
+.name {
+    background-color: rgb(187, 194, 194);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.email {
+    background-color: rgb(136, 141, 145);
+}
+
+.work {
+    background-color: rgb(187, 194, 194);
+}
+
+.phone {
+    background-color: rgb(136, 141, 145);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.invalid input {
+    border: 1px solid #b00020;
+    background-color: #f5c6c6;
+}
+
+.invalid p {
+    color: #b00020;
+}
+
+.contact button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
