@@ -199,6 +199,21 @@ const cancelAddModalHandler = () => {
     setShowAddModal(false)
 }
 
+const confirmEditHandler = () => {
+    const updatedContact = {
+        ...contact,
+        phone: phoneNumber,
+    }
+
+    setContacts(contacts => contacts.map(item =>
+        item.id === editId ? updatedContact : item
+    ))
+
+    setShowEditModal(false)
+    cancelHandler()
+}
+
+
 
 
 
