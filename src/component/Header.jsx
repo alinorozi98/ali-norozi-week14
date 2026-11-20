@@ -251,28 +251,156 @@ const confirmSingleDeleteHandler = () => {
 
 
 
-
-
-
-
-
+if (add) {
     return (
         <>
-            <div className={styles.headers}>
-                <label htmlFor="serch">جستجو در مخاطبین : </label>
+            <AddContact
+                cancelHandler={cancelHandler}
+                editId={editId}
+                contact={contact}
+                addedHandler={addedHandler}
+                showHandler={showHandler}
+                alertName={alertName}
+                alertEmail={alertEmail}
+                alertPhone={alertPhone}
+                isFormValid={isFormValid}
+            />
 
-                <input type="text" id="serch" />
+            {showEditModal && (
+                <div className={styles.modalBox}>
+                    <div className={styles.modal}>
+                        <p>شما در حال ویرایش اطلاعات مخاطب هستید!</p>
+                        <p>آیا مطمئن هستید؟</p>
 
-                <span title="انتخاب چند مخاطب برای حذف">
-                    ✔️
-                </span>
+                        <div className={styles.modalButtons}>
+                            <button
+                                className={styles.cancelButton}
+                                onClick={() => setShowEditModal(false)}
+                            >
+                                انصراف
+                            </button>
 
-                <span title="افزودن مخاطب">
-                    ➕
-                </span>
-            </div>
+                            <button
+                                className={styles.editButton}
+                                onClick={confirmEditHandler}
+                            >
+                                ویرایش
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showAddModal && (
+                <div className={styles.modalBox}>
+                    <div className={styles.modal}>
+                        <p>شما در حال افزودن مخاطب جدید هستید!</p>
+                        <p>آیا مطمئن هستید؟</p>
+
+                        <div className={styles.modalButtons}>
+                            <button
+                                className={styles.cancelButton}
+                                onClick={cancelAddModalHandler}
+                            >
+                                انصراف
+                            </button>
+
+                            <button
+                                className={styles.editButton}
+                                onClick={confirmAddHandler}
+                            >
+                                افزودن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     )
+}
+
+else if (remove) {
+    return (
+        <RemoveContact
+            contacts={contacts}
+            setContacts={setContacts}
+            search={search}
+            serchHandler={serchHandler}
+            searchContacts={searchContacts}
+            addHandler={addHandler}
+            onClose={closeDeleteModeHandler}
+            setDeleteMessage={setDeleteMessage}
+        />
+    )
+}
+
+return (
+    <>
+        {deleteMessage && (
+            <div className={styles.message}>
+                {deleteMessage}
+            </div>
+        )}
+
+        {showSingleDeleteModal && (
+            <div className={styles.modalBox}>
+                <div className={styles.modal}>
+                    <p>شما در حال حذف یکی از مخاطبین هستید!</p>
+                    <p>آیا مطمئن هستید؟</p>
+
+                    <div className={styles.modalButtons}>
+                        <button
+                            className={styles.cancelButton}
+                            onClick={cancelSingleDeleteHandler}
+                        >
+                            انصراف
+                        </button>
+
+                        <button
+                            className={styles.deleteButton}
+                            onClick={confirmSingleDeleteHandler}
+                        >
+                            حذف
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+
+        <div className={styles.headers}>
+            <label htmlFor="serch">جستجو در مخاطبین : </label>
+
+            <input
+                type="text"
+                id="serch"
+                onChange={serchHandler}
+                value={search}
+            />
+
+            <span
+                onClick={deleteAllHandler}
+                title="انتخاب چند مخاطب برای حذف"
+            >
+                ✔️
+            </span>
+
+            <span
+                onClick={addHandler}
+                title="افزودن مخاطب"
+            >
+                ➕
+            </span>
+        </div>
+
+        <ContactList
+            contacts={contacts}
+            removeHandler={removeHandler}
+            editHandler={editHandler}
+            searchContacts={searchContacts}
+        />
+    </>
+)
+
 }
 
 export default Header
