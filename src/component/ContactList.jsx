@@ -1,10 +1,41 @@
 
 import styles from "./contactList.module.css"
 
-function ContactList() {
+function ContactList({
+    contacts = [],
+    remove,
+    searchContacts = [],
+}) {
+    const visibleContacts = remove ? contacts : searchContacts
+
     return (
         <div className={styles.contact}>
             <h3>مخاطبین</h3>
+
+            {
+                contacts.length ? (
+                    visibleContacts.length ? (
+                        <div>
+                            {
+                                visibleContacts.map((item) => (
+                                    <ul key={item.id}>
+                                        <li>{item.name}</li>
+                                        <li>{item.email}</li>
+                                    </ul>
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <p className={styles.text}>
+                            مخاطبی پیدا نشد.
+                        </p>
+                    )
+                ) : (
+                    <p className={styles.text}>
+                        مخاطبی وجود ندارد
+                    </p>
+                )
+            }
         </div>
     )
 }
