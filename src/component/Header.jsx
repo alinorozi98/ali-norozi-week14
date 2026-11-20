@@ -10,6 +10,34 @@ const emptyContact = {
     phone: "",
 }
 
+const convertToEnglish = (value) => {
+    return value
+        .replace(/[۰-۹]/g, (number) => "۰۱۲۳۴۵۶۷۸۹".indexOf(number))
+        .replace(/[٠-٩]/g, (number) => "٠١٢٣٤٥٦٧٨٩".indexOf(number))
+}
+
+const isValidEmail = (email) => {
+    const cleanEmail = email.trim()
+    const atPosition = cleanEmail.indexOf("@")
+    const dotPosition = cleanEmail.lastIndexOf(".")
+
+    return (
+        atPosition > 0 &&
+        atPosition === cleanEmail.lastIndexOf("@") &&
+        dotPosition > atPosition + 1 &&
+        dotPosition < cleanEmail.length - 2 &&
+        !cleanEmail.includes(" ")
+    )
+}
+
+const isValidPhone = (phone) => {
+    const englishPhone = convertToEnglish(phone.trim())
+    const onlyNumbers = englishPhone.split("").every(number => "0123456789".includes(number))
+
+    return englishPhone.length === 11 && englishPhone.startsWith("09") && onlyNumbers
+}
+
+
 function Header() {
     const [contact, setContact] = useState(emptyContact)
 
@@ -48,6 +76,20 @@ function Header() {
     useEffect(() => {
         localStorage.setItem("contacts", JSON.stringify(contacts))
     }, [contacts])
+
+
+const serchHandler = (event) => {
+    setSearch(event.target.value)
+}
+
+const serchValue = search.toLowerCase().trim()
+
+const searchContacts = contacts.filter((item) => {
+    const itemName = (item.name ?? "").toLowerCase()
+    const itemEmail = (item.email ?? "").toLowerCase()
+
+    return itemName.includes(serchValue) || itemEmail.includes(serchValue)
+})
 
     return (
         <>
