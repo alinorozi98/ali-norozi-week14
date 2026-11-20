@@ -1,7 +1,12 @@
 
+
 import { useEffect, useState } from "react"
-import styles from "./Header.module.css"
+import AddContact from "./AddContact"
+import ContactList from "./ContactList"
+import RemoveContact from "./RemoveContact"
 import { v4 } from "uuid"
+import styles from "./Header.module.css"
+
 
 const emptyContact = {
     id: "",
@@ -123,6 +128,17 @@ const cancelHandler = () => {
     setAlertEmail("")
     setAlertPhone("")
 }
+
+const deleteAllHandler = () => {
+    setRemove(true)
+    setDeleteMessage("")
+}
+
+const closeDeleteModeHandler = () => {
+    setRemove(false)
+}
+
+
 
 const showHandler = (event) => {
     const { name, value } = event.target
