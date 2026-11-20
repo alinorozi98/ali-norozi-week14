@@ -65,6 +65,10 @@ function AddContact({
     <p>{alertPhone}</p>
 </div>
 
+<button onClick={addedHandler} disabled={!isFormValid}>
+    {editId ? "ویرایش" : "افزودن"}
+</button>
+
         </div>
     )
 }
