@@ -47,11 +47,74 @@ const confirmBulkRemoveHandler = () => {
 }
 
 
-    return (
-        <>
-            
-        </>
-    )
+   
+return (
+    <>
+        <div className={styles.headers}>
+            <label htmlFor="serch">جستجو در مخاطبین : </label>
+
+            <input
+                type="text"
+                id="serch"
+                onChange={serchHandler}
+                value={search}
+            />
+
+            <span
+                onClick={bulkRemoveHandler}
+                className={selectedContacts.length ? styles.activeIcon : styles.disabledIcon}
+                title="حذف مخاطبین انتخاب‌شده"
+            >
+                👤−
+            </span>
+
+            <span onClick={onClose} title="بازگشت">
+                🔙
+            </span>
+
+            <span onClick={addHandler} title="افزودن مخاطب">
+                ➕
+            </span>
+        </div>
+
+        <ContactList
+            contacts={contacts}
+            remove={true}
+            searchContacts={searchContacts}
+            selectedContacts={selectedContacts}
+            selectContactHandler={selectContactHandler}
+        />
+
+        {showDeleteModal && (
+            <div className={styles.modalBox}>
+                <div className={styles.modal}>
+                    <p>
+                        شما در حال حذف گروهی چند نفر از مخاطبانتان هستید!
+                    </p>
+
+                    <p>آیا مطمئن هستید؟</p>
+
+                    <div className={styles.modalButtons}>
+                        <button
+                            className={styles.cancelButton}
+                            onClick={() => setShowDeleteModal(false)}
+                        >
+                            انصراف
+                        </button>
+
+                        <button
+                            className={styles.deleteButton}
+                            onClick={confirmBulkRemoveHandler}
+                        >
+                            حذف
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+    </>
+)
+
 }
 
 export default RemoveContact
