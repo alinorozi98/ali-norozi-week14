@@ -27,6 +27,19 @@ function AddContact({
                 />
                 <p>{alertName}</p>
             </div>
+
+<div className={alertEmail ? `${styles.email} ${styles.invalid}` : styles.email}>
+    <label htmlFor="email">ایمیل : </label>
+    <input
+        type="email"
+        name="email"
+        id="email"
+        value={contact.email}
+        onChange={showHandler}
+    />
+    <p>{alertEmail}</p>
+</div>
+
         </div>
     )
 }
