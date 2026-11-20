@@ -1,0 +1,19 @@
+
+.headers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5px;
+}
+
+.headers label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.headers input {
+    width: 900px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
