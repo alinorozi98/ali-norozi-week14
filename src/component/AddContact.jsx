@@ -51,6 +51,20 @@ function AddContact({
     />
 </div>
 
+<div className={alertPhone ? `${styles.phone} ${styles.invalid}` : styles.phone}>
+    <label htmlFor="phone">تلفن همراه : </label>
+    <input
+        type="tel"
+        name="phone"
+        id="phone"
+        value={contact.phone}
+        onChange={showHandler}
+        maxLength={11}
+        inputMode="numeric"
+    />
+    <p>{alertPhone}</p>
+</div>
+
         </div>
     )
 }
