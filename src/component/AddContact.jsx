@@ -40,6 +40,17 @@ function AddContact({
     <p>{alertEmail}</p>
 </div>
 
+<div className={styles.work}>
+    <label htmlFor="work">شغل : </label>
+    <input
+        type="text"
+        name="work"
+        id="work"
+        value={contact.work}
+        onChange={showHandler}
+    />
+</div>
+
         </div>
     )
 }
