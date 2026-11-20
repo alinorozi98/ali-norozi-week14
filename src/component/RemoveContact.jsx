@@ -27,6 +27,26 @@ function RemoveContact({
         })
     }
 
+const bulkRemoveHandler = () => {
+    if (selectedContacts.length > 0) {
+        setShowDeleteModal(true)
+    }
+}
+
+const confirmBulkRemoveHandler = () => {
+    const deletedCount = selectedContacts.length
+
+    setContacts(contacts =>
+        contacts.filter(item => !selectedContacts.includes(item.id))
+    )
+
+    setSelectedContacts([])
+    setShowDeleteModal(false)
+    setDeleteMessage(`${deletedCount} مخاطب حذف شد`)
+    onClose()
+}
+
+
     return (
         <>
             
