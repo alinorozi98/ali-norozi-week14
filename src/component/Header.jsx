@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react"
 import styles from "./Header.module.css"
+import { v4 } from "uuid"
 
 const emptyContact = {
     id: "",
@@ -180,6 +181,25 @@ const addedHandler = () => {
         setShowAddModal(true)
     }
 }
+
+const confirmAddHandler = () => {
+    const newContact = {
+        ...contact,
+        phone: phoneNumber,
+        id: v4(),
+    }
+
+    setContacts(contacts => [...contacts, newContact])
+    setDeleteMessage("1 مخاطب اضافه شد")
+    setShowAddModal(false)
+    cancelHandler()
+}
+
+const cancelAddModalHandler = () => {
+    setShowAddModal(false)
+}
+
+
 
 
 
